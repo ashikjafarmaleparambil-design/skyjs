@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyMoon International | Skill Certification & Assessment</title>
+    <meta name="description" content="Get certified in professional skills like Python, Digital Marketing, and HR. ISO Certified Skill Assessment by SkyMoon International.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (via CDN for single file portability) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Theme Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1', // Indigo
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        accent: {
+                            400: '#818cf8',
+                            500: '#a855f7', // Purple
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(79, 70, 229, 0.9), rgba(168, 85, 247, 0.9)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for animations and specific overrides */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-circle {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Dashed line connector for steps on desktop */
+        @media (min-width: 1024px) {
+            .step-connector::after {
+                content: '';
+                position: absolute;
+                top: 2rem;
+                left: 50%;
+                width: 100%;
+                height: 2px;
+                background-image: linear-gradient(to right, #e0e7ff 50%, transparent 50%);
+                background-size: 20px 100%;
+                z-index: 0;
+            }
+            .step-connector:last-child::after {
+                display: none;
+            }
+        }
+
+        /* Certificate badge pulse animation */
+        @keyframes subtle-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+        .btn-pulse {
+            animation: subtle-pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-accent-500 flex items-center justify-center text-white font-bold">
+                        S
+                    </div>
+                    <span class="font-heading font-bold text-xl text-gray-900 tracking-tight">SkyMoon<span class="text-brand-600">Intl</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#how-it-works" class="text-gray-600 hover:text-brand-600 font-medium transition">How It Works</a>
+                    <a href="#skills" class="text-gray-600 hover:text-brand-600 font-medium transition">Skills</a>
+                    <a href="#about" class="text-gray-600 hover:text-brand-600 font-medium transition">About</a>
+                    <a href="#register" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-full font-medium transition shadow-lg shadow-brand-500/30">Register Now</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">How It Works</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Skills</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">About</a>
+                <a href="#register" class="block w-full text-center mt-4 px-5 py-3 rounded-lg font-bold bg-brand-600 text-white">Start Assessment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-hero-pattern bg-cover bg-center bg-no-repeat min-h-[90vh] flex items-center pt-16">
+        <!-- Overlay Shape -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L1440 120L1440 0C1440 0 1082.5 98.5 720 98.5C357.5 98.5 0 0 0 0L0 120Z" fill="#F9FAFB"/>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left text-white space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/30 mb-2">
+                        <i class="fa-solid fa-certificate text-yellow-300"></i>
+                        <span class="text-sm font-medium">ISO & IAF Certified Assessment Body</span>
+                    </div>
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                        Get Certified. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-400">Prove Your Skills.</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-brand-100 max-w-2xl mx-auto lg:mx-0">
+                        Take professional skill assessments, earn industry-recognized certificates, and boost your career for just <span class="font-bold text-white text-2xl">₹499</span>.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                        <a href="#register" class="btn-pulse bg-white text-brand-600 font-bold px-8 py-4 rounded-full text-lg shadow-xl hover:bg-gray-50 transition transform hover:-translate-y-1">
+                            Start Skill Assessment
+                        </a>
+                        <a href="#how-it-works" class="bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-full text-lg hover:bg-white/10 transition">
+                            How It Works
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image / Card -->
+                <div class="hidden lg:block relative">
+                    <!-- Floating Badge -->
+                    <div class="absolute -top-6 -right-6 bg-white p-4 rounded-xl shadow-xl z-20 animate-bounce" style="animation-duration: 3s;">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-green-100 p-2 rounded-full text-green-600">
+                                <i class="fa-solid fa-check text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold uppercase">Status</p>
+                                <p class="text-sm font-bold text-gray-800">Verified</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500">
+                        <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student with certificate" class="rounded-xl shadow-inner w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Badges Section -->
+    <section class="py-10 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500 text-sm font-semibold uppercase tracking-wider mb-8">Officially Recognized & Certified By</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                <!-- ISO Badge Simulation -->
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-medal text-4xl text-gray-700"></i>
+                    <div class="text-left">
+                        <div class="font-heading font-bold text-xl text-gray-800">ISO</div>
+                        <div class="text-xs text-gray-500 font-semibold">CERTIFIED COMPANY</div>
+                    </div>
+                </div>
+                <!-- IAF Badge Simulation -->
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-globe text-4xl text-blue-700"></i>
+                    <div class="text-left">
+                        <div class="font-heading font-bold text-xl text-gray-800">IAF</div>
+                        <div class="text-xs text-gray-500 font-semibold">ACCREDITED</div>
+                    </div>
+                </div>
+                <!-- MSME Badge Simulation -->
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-building-columns text-4xl text-orange-600"></i>
+                    <div class="text-left">
+                        <div class="font-heading font-bold text-xl text-gray-800">MSME</div>
+                        <div class="text-xs text-gray-500 font-semibold">GOVT. REGISTERED</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 relative">
+                    <div class="absolute inset-0 bg-brand-200 rounded-2xl transform translate-x-3 translate-y-3"></div>
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Team working" class="relative rounded-2xl shadow-lg w-full">
+                </div>
+                <div class="order-1 md:order-2 space-y-6">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900">About <span class="text-brand-600">SkyMoon International</span></h2>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        We are a premier Skill Certification & Assessment company dedicated to bridging the gap between talent and industry recognition. SkyMoon International empowers students and professionals by validating their technical and professional skills through rigorous online assessments.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-gray-700">ISO & IAF Certified Organization</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-gray-700">Official MSME Registration</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-gray-700">Trusted by thousands of candidates nationwide</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gray-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-600 font-bold uppercase tracking-wider text-sm">Simple Process</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mt-2">Get Certified in 4 Easy Steps</h2>
+                <p class="text-gray-600 mt-4">Our streamlined process ensures you get your certificate quickly after proving your skills.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="step-connector relative flex flex-col items-center text-center group">
+                    <div class="step-circle w-20 h-20 rounded-2xl bg-white shadow-lg border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-list-check text-3xl text-brand-600"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">1. Choose Skill</h3>
+                    <p class="text-sm text-gray-600">Select your domain from our list of technical and professional subjects.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-connector relative flex flex-col items-center text-center group">
+                    <div class="step-circle w-20 h-20 rounded-2xl bg-white shadow-lg border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-laptop-code text-3xl text-brand-600"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">2. Take Assessment</h3>
+                    <p class="text-sm text-gray-600">Attend the online skill assessment test from the comfort of your home.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-connector relative flex flex-col items-center text-center group">
+                    <div class="step-circle w-20 h-20 rounded-2xl bg-white shadow-lg border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-credit-card text-3xl text-brand-600"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">3. Pay Fee</h3>
+                    <p class="text-sm text-gray-600">Pay a nominal processing fee of <strong>₹499</strong> only after completing the test.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-connector relative flex flex-col items-center text-center group">
+                    <div class="step-circle w-20 h-20 rounded-2xl bg-brand-600 shadow-xl shadow-brand-500/40 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-file-arrow-down text-3xl text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">4. Download</h3>
+                    <p class="text-sm text-gray-600">Unlock your verified certificate instantly and download it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-600 font-bold uppercase tracking-wider text-sm">Our Catalog</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mt-2">Skills We Assess</h2>
+                <p class="text-gray-600 mt-4">Broaden your portfolio with certifications in high-demand industries.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Skill Card Template -->
+                <div class="skill-card bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800">HR Management</h3>
+                    <p class="text-sm text-gray-500 mt-2">Recruitment, Payroll, and Organizational Psychology.</p>
+                </div>
+
+                <div class="skill-card bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800">Digital Marketing</h3>
+                    <p class="text-sm text-gray-500 mt-2">SEO, Social Media, and Content Strategy.</p>
+                </div>
+
+                <div class="skill-card bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-brands fa-microsoft"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800">MS Office</h3>
+                    <p class="text-sm text-gray-500 mt-2">Word, PowerPoint, and Outlook proficiency.</p>
+                </div>
+
+                <div class="skill-card bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-green-50 text-green-600 flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-table"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800">MS Excel</h3>
+                    <p class="text-sm text-gray-500 mt-2">Advanced formulas, Pivot Tables, and Macros.</p>
+                </div>
+
+                <div class="skill-card bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800">Accounting</h3>
+                    <p class="text-sm text-gray-500 mt-2">Bookkeeping, Tally, and Financial Reporting.</p>
+                </div>
+
+                <div class="skill-card bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800">Data Analytics</h3>
+                    <p class="text-sm text-gray-500 mt-2">Visualization, SQL, and Business Intelligence.</p>
+                </div>
+
+                <div class="skill-card bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-yellow-50 text-yellow-600 flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800">Python</h3>
+                    <p class="text-sm text-gray-500 mt-2">Scripting, Automation, and Data Science basics.</p>
+                </div>
+
+                <div class="skill-card bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800">Full Stack Dev</h3>
+                    <p class="text-sm text-gray-500 mt-2">Frontend & Backend web technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-brand-900 text-white relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent-500 opacity-10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mt-2">Why Choose SkyMoon?</h2>
+                <div class="w-20 h-1 bg-accent-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-accent-400">
+                        <i class="fa-solid fa-wallet text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Unbeatable Affordability</h3>
+                        <p class="text-brand-100">Get premium certification for just ₹499. No hidden costs or monthly subscriptions.</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-accent-400">
+                        <i class="fa-solid fa-bolt text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Fast Delivery</h3>
+                        <p class="text-brand-100">Instant assessment results. Download your certificate immediately after fee payment.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-accent-400">
+                        <i class="fa-solid fa-certificate text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Industry Relevant</h3>
+                        <p class="text-brand-100">Curriculum designed by industry experts to match current market standards.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-accent-400">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Trusted & Secure</h3>
+                        <p class="text-brand-100">ISO/IAF/MSME certified organization ensuring your credentials hold real value.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="register" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-brand-600 to-accent-600 rounded-3xl shadow-2xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+                 <!-- Background Patterns -->
+                 <svg class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 text-white opacity-10" fill="currentColor" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"/></svg>
+                 
+                 <h2 class="text-3xl md:text-5xl font-heading font-bold mb-6">Ready to Prove Your Skills?</h2>
+                 <p class="text-xl text-brand-50 mb-8 max-w-2xl mx-auto">Join thousands of successful candidates. Take the assessment, pay the fee, and get certified today.</p>
+                 
+                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="alert('Registration Portal Coming Soon! This is a demo.')" class="bg-white text-brand-600 font-bold px-10 py-4 rounded-full text-lg shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1 w-full sm:w-auto">
+                        Register Now
+                    </button>
+                    <a href="#skills" class="bg-transparent border-2 border-white text-white font-semibold px-10 py-4 rounded-full text-lg hover:bg-white/10 transition w-full sm:w-auto">
+                        View Skills
+                    </a>
+                 </div>
+                 <p class="mt-4 text-sm text-brand-200">Processing Fee: ₹499 | Instant Certification</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold">S</div>
+                        <span class="font-heading font-bold text-xl text-white">SkyMoon<span class="text-brand-500">Intl</span></span>
+                    </div>
+                    <p class="text-sm mb-4 max-w-xs">Empowering careers through affordable, industry-standard skill certifications. ISO 9001:2015 Certified.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#how-it-works" class="hover:text-brand-500 transition">Process</a></li>
+                        <li><a href="#skills" class="hover:text-brand-500 transition">All Skills</a></li>
+                        <li><a href="#about" class="hover:text-brand-500 transition">About Us</a></li>
+                        <li><a href="#register" class="hover:text-brand-500 transition">Register</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fa-solid fa-envelope mr-2"></i> support@skymoon.intl</li>
+                        <li><i class="fa-solid fa-phone mr-2"></i> +91 98765 43210</li>
+                        <li><i class="fa-solid fa-location-dot mr-2"></i> Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 2023 SkyMoon International. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth Scroll Script Override for older browsers -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
